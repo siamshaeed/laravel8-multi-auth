@@ -16,7 +16,21 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <form action="#" method="POST">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                @if(Session::has('message'))
+                    <p class="text-danger">{{ Session::get('message')}}</p>
+                @endif
+
+                <form action="{{url('student-login')}}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
@@ -26,7 +40,8 @@
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" name="password">
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
+                    <input type="submit" value="Admin Login" class="btn btn-primary">
                 </form>
             </div>
             <div class="col-md-3"></div>

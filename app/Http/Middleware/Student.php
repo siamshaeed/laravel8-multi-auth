@@ -19,7 +19,7 @@ class Student
     {
         // Logic implement for auth - Siam
         if(!Auth::guard('student')->check()){
-            return redirect('login/admin');
+            return redirect('/login/admin');
         }
         return $next($request);
     }

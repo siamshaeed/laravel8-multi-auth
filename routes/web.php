@@ -20,13 +20,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// student backend routes
-Route::get('login/admin', [StudentAuthController::class, 'studentLogin'])->name('studentLogin');
+//Start student backend login
+Route::get('login/admin', [StudentAuthController::class, 'studentLoginForm'])->name('studentLogin');
+Route::post('student-login', [StudentAuthController::class, 'studentLogins']);
+//End student backend login
 
-//Route group 
+//Start Route group for auth
 Route::group(['middleware'=>'student'], function(){
     Route::get('admin/dashbord', [StudentDashbordController::class, 'studentDashbord'])->name('studentDashbord');
 });
+//End Route group for auth
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

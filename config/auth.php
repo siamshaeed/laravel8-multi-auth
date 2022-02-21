@@ -40,7 +40,7 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-        // guard add - Siam
+        // Student guard add - Siam
         'student' => [
             'driver' => 'session',
             'provider' => 'students',
@@ -76,6 +76,7 @@ return [
             'model' => App\Models\User::class,
         ],
 
+        // Student Provaiders add -Siam
         'students' => [
             'driver' => 'eloquent',
             'model' => App\Models\Student::class,
