@@ -40,6 +40,11 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        // guard add - Siam
+        'student' => [
+            'driver' => 'session',
+            'provider' => 'students',
+        ],
 
         'api' => [
             'driver' => 'token',
@@ -71,6 +76,10 @@ return [
             'model' => App\Models\User::class,
         ],
 
+        'students' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Student::class,
+        ],
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',

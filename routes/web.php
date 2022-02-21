@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Backend\StudentAuthController;
+use App\Http\Controllers\Backend\StudentDashbordController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +20,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+// student backend routes
+Route::get('login/admin', [StudentAuthController::class, 'studentLogin'])->name('studentLogin');
 
+//Route group 
+Route::group(['middleware'=>'student'], function(){
+    Route::get('admin/dashbord', [StudentDashbordController::class, 'studentDashbord'])->name('studentDashbord');
+});
+
+Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
