@@ -28,6 +28,7 @@ Route::post('student-login', [StudentAuthController::class, 'studentLogins']);
 //Start Route group for auth
 Route::group(['middleware'=>'student'], function(){
     Route::get('admin/dashbord', [StudentDashbordController::class, 'studentDashbord'])->name('studentDashbord');
+    Route::get('admin/logout', [StudentAuthController::class, 'studentLogout'])->name('studentLogout');
 });
 //End Route group for auth
 
