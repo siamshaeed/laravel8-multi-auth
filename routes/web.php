@@ -6,7 +6,6 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 
-
 Route::get('/', function () {
     return view('welcome');
 });
@@ -15,6 +14,7 @@ Route::get('/', function () {
 Route::get('login/admin', [StudentAuthController::class, 'studentLoginForm'])->name('studentLogin');
 Route::post('student-login', [StudentAuthController::class, 'studentLogins']);
 //End student backend login
+
 
 //Start Route group for auth
 Route::group(['middleware'=>'student'], function(){
