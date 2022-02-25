@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
         integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-    <title>Student Login</title>
+    <title>Teacher Login</title>
 </head>
 
 <body>
@@ -16,7 +16,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <h3 class="text-center bg-info text-light p-2">Student Login :</h3>
+                <h3 class="text-center bg-info text-light p-2">Teacher Login :</h3>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -31,11 +31,11 @@
                     <p class="text-danger">{{ Session::get('message') }}</p>
                 @endif
 
-                <form action="{{ route('student.login') }}" method="post">
+                <form action="#" method="post">
                     @csrf
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" name="email">
+                        <label for="exampleInputEmail1">Phone Number</label>
+                        <input type="number" class="form-control" name="phone">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Password</label>

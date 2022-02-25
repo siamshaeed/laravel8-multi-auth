@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class Student
+class Teacher
 {
     /**
      * Handle an incoming request.
@@ -17,10 +17,10 @@ class Student
      */
     public function handle(Request $request, Closure $next)
     {
-        // Logic implement for auth - Siam
-        if(!Auth::guard('student')->check()){
-            return redirect()->route('student.login');
+        if(!Auth::guard('teacher')){
+            return redirect()->route('teacher/login');
         }
+
         return $next($request);
     }
 }

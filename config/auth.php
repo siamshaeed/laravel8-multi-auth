@@ -46,6 +46,12 @@ return [
             'provider' => 'students',
         ],
 
+        //Teacher guard add - siam
+        'teacher' => [
+            'driver' => 'session',
+            'provider' => 'teachers',
+        ],
+
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
@@ -81,6 +87,13 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Student::class,
         ],
+
+        // Teacher Provaiders add -Siam
+        'teachers' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Teacher::class,
+        ],
+
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
