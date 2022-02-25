@@ -16,6 +16,7 @@
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
+                <h3 class="text-center bg-info text-light p-2">Student Login :</h3>
                 @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -26,11 +27,11 @@
                     </div>
                 @endif
 
-                @if(Session::has('message'))
-                    <p class="text-danger">{{ Session::get('message')}}</p>
+                @if (Session::has('message'))
+                    <p class="text-danger">{{ Session::get('message') }}</p>
                 @endif
 
-                <form action="{{url('student-login')}}" method="post">
+                <form action="{{ url('student-login') }}" method="post">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">Email address</label>
@@ -40,13 +41,13 @@
                         <label for="exampleInputPassword1">Password</label>
                         <input type="password" class="form-control" name="password">
                     </div>
-                    {{-- <button type="submit" class="btn btn-primary">Submit</button> --}}
-                    <input type="submit" value="Admin Login" class="btn btn-primary">
+                    <input type="submit" value="Login" class="btn btn-info">
                 </form>
             </div>
             <div class="col-md-3"></div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
     </script>
