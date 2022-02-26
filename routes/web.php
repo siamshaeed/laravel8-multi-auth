@@ -17,13 +17,13 @@ Route::prefix('student')->group(function () {
 
     //Start Student Login, registration, logout useing multi-auth-gaurd
 
-    // Login
-    Route::get('login', [StudentAuthController::class, 'getLogin'])->name('student.login');
-    Route::post('login', [StudentAuthController::class, 'postLogin']);
-
     // Registration
     Route::get('registration', [StudentAuthController::class, 'getRegistration'])->name('student.registration');
     Route::post('registration', [StudentAuthController::class, 'postRegistration'])->name('student.post.registration');
+
+    // Login
+    Route::get('login', [StudentAuthController::class, 'getLogin'])->name('student.login');
+    Route::post('login', [StudentAuthController::class, 'postLogin']);
 
     // Student Middleware
     Route::group(['middleware' => 'student'], function () {
@@ -38,6 +38,11 @@ Route::prefix('student')->group(function () {
 Route::prefix('teacher')->group(function () {
 
     //Start Teacher Login, registration, logout useing multi-auth-gaurd
+
+    // Registration
+    Route::get('registration', [TeacherAuthController::class, 'getRegistration'])->name('teacher.registration');
+    Route::post('registration', [TeacherAuthController::class, 'postRegistration'])->name('teacher.post.registration');
+
 
     // Login
     Route::get('login', [TeacherAuthController::class, 'getLogin'])->name('teacher.login');

@@ -2,11 +2,36 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Middleware\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class TeacherAuthController extends Controller
 {
+    public function getRegistration()
+    {
+        return view('teacherBackend.registration.registration');
+    }
+
+    public function postRegistration(Request $request)
+    {
+        $rule = [
+            'name'  => 'required',
+            'phone'  => 'required',
+            'password'  => 'required',
+        ];
+
+        $this->validate($request, $rule);
+
+        $teacher = new  \App\Models\Teacher();
+        $teacher->name      = $request->name;
+        $teacher->phone     = $request->phone;
+        $teacher->password  = bcrypt($request->password);
+        $teacher->save();
+
+        session()->flash('message', 'Registration Done');
+        return redirect()->route('teacher.login');
+    }
 
     public function getLogin()
     {
