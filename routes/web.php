@@ -23,7 +23,7 @@ Route::prefix('student')->group(function () {
 
     // Registration
     Route::get('registration', [StudentAuthController::class, 'getRegistration'])->name('student.registration');
-    Route::post('registration', [StudentAuthController::class, 'postRegistration']);
+    Route::post('registration', [StudentAuthController::class, 'postRegistration'])->name('student.post.registration');
 
     // Student Middleware
     Route::group(['middleware' => 'student'], function () {
@@ -52,7 +52,6 @@ Route::prefix('teacher')->group(function () {
     //End Teacher Login, registration, logout useing multi-auth-gaurd
 
 });
-
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Student;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,12 +33,27 @@ class StudentAuthController extends Controller
 
     public function getRegistration()
     {
-        echo 'Registration Form Here';
+        return view('studentBackend.registration.registration');
     }
 
     public function postRegistration(Request $request)
     {
-        echo 'Registration Submit Here';
+        $rule = [
+            'name'  => 'required',
+            'email'  => 'required',
+            'password'  => 'required',
+        ];
+
+        $this->validate($request,$rule);
+
+        $student = new  Student();
+        $student->name      = $request->name;
+        $student->email     = $request->email;
+        $student->password  = bcrypt($request->password);
+        $student->save();
+
+        session()->flash('message', 'Registration Done');
+        return redirect()->route('student.login');
     }
 
     public function studentLogout()
