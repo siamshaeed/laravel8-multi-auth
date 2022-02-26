@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Middleware\Teacher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class TeacherAuthController extends Controller
 {
@@ -66,5 +67,32 @@ class TeacherAuthController extends Controller
     {
         Auth::guard('teacher')->logout();
         return redirect()->route('teacher.login');
+    }
+
+    public function getChengePassword(){
+        return view('teacherBackend.password.login');
+    }
+
+    // Teacher password chenge
+    public function updateChengePassword(Request $request){
+
+        $request->validate([
+            'old_password'      =>  'required|min:6|max:20',
+            'new_password'      =>  'required|min:6|max:20',
+            'confirm_password'  =>  'required|same:new_password'
+        ]);
+
+        $current_user = auth()->guard('teacher')->user();
+
+        if(Hash::check($request->old_password,$current_user->password)){
+            $current_user->update([
+                'password'  => bcrypt($request->new_password)
+            ]);
+            session()->flash('message', 'Password successfully update');
+            return redirect()->back();
+        }else{
+            session()->flash('message', 'Old password does not matched');
+            return redirect()->route('teacher.login');
+        }
     }
 }

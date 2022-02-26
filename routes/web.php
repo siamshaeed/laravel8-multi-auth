@@ -52,9 +52,15 @@ Route::prefix('teacher')->group(function () {
     Route::group(['middleware' => 'teacher'], function () {
         Route::get('dashbord', [TeacherAuthController::class, 'teacherDashbord'])->name('teacherDashbord');
         Route::get('logout', [TeacherAuthController::class, 'logout'])->name('teacher.logout');
+
+        // Chenge Password - teacher
+        Route::get('chenge-password', [TeacherAuthController::class, 'getChengePassword'])->name('teacher.chenge.password');
+        Route::post('chenge-password', [TeacherAuthController::class, 'updateChengePassword'])->name('teacher.chenge.password');
     });
 
     //End Teacher Login, registration, logout useing multi-auth-gaurd
+
+
 
 });
 

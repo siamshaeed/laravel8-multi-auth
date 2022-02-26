@@ -15,7 +15,7 @@
     <div class="jumbotron">
         <h1 class="display-4" style="color: red; font-size:22px">Welcome Teacher Dashbord</h1>
         <hr class="my-4">
-
+        <a class="btn btn-primary btn-lg" href="{{ route('teacher.chenge.password') }}">Change Password</a>
         <a class="btn btn-primary btn-lg" href="{{ route('teacher.logout') }}">Logout</a>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
