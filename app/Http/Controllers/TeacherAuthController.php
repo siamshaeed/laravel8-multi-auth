@@ -69,12 +69,14 @@ class TeacherAuthController extends Controller
         return redirect()->route('teacher.login');
     }
 
-    public function getChengePassword(){
+    public function getChengePassword()
+    {
         return view('teacherBackend.password.login');
     }
 
     // Teacher password chenge
-    public function updateChengePassword(Request $request){
+    public function updateChengePassword(Request $request)
+    {
 
         $request->validate([
             'old_password'      =>  'required|min:6|max:20',
@@ -84,13 +86,13 @@ class TeacherAuthController extends Controller
 
         $current_user = auth()->guard('teacher')->user();
 
-        if(Hash::check($request->old_password,$current_user->password)){
+        if (Hash::check($request->old_password, $current_user->password)) {
             $current_user->update([
                 'password'  => bcrypt($request->new_password)
             ]);
             session()->flash('message', 'Password successfully update');
             return redirect()->back();
-        }else{
+        } else {
             session()->flash('message', 'Old password does not matched');
             return redirect()->route('teacher.login');
         }
